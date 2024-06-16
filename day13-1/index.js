@@ -1,55 +1,67 @@
-const data = [
-    "Item 1", "Item 2", "Item 3", "Item 4", "Item 5",
-    "Item 6", "Item 7", "Item 8", "Item 9", "Item 10",
-    "Item 11", "Item 12", "Item 13", "Item 14", "Item 15"
-];
-
-const itemsPerPage = 5;
+let jsonData = []; // Variable to store fetched JSON data
 let currentPage = 1;
+const itemsPerPage = 5; // Number of items per page
 
-function renderContent() {
-    const contentContainer = document.getElementById('content-container');
-    contentContainer.innerHTML = '';
+// Function to fetch JSON data
+async function fetchJsonData() {
+    try {
+        const response = await fetch('data.json');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        jsonData = await response.json(); // Assigning fetched data to the variable
+        renderData();
+        renderPaginationControls();
+    } catch (error) {
+        console.error('Fetch error:', error);
+    }
+}
 
+// Function to render current page data
+function renderData() {
     const start = (currentPage - 1) * itemsPerPage;
     const end = start + itemsPerPage;
+    const paginatedData = jsonData.slice(start, end);
 
-    const currentItems = data.slice(start, end);
-    currentItems.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'content';
-        div.textContent = item;
-        contentContainer.appendChild(div);
-    });
-
-    const contentElements = document.querySelectorAll('.content');
-    contentElements.forEach(element => {
-        element.style.display = 'block';
+    const dataContainer = document.getElementById('data-container');
+    dataContainer.innerHTML = ''; // Clear previous data
+    paginatedData.forEach(item => {
+        const p = document.createElement('p');
+        const c = document.createElement('p');
+        const d = document.createElement('p');
+        d.textContent = `id:${item.id}`
+        p.textContent = `name:${item.name}`
+        c.textContent = `email:${item.email}`
+        
+      // Assuming 'name' is a property in your JSON objects
+        dataContainer.appendChild(d);
+        dataContainer.appendChild(p);
+        dataContainer.appendChild(c);
+       
     });
 }
 
-function renderPagination() {
+// Function to render pagination controls
+function renderPaginationControls() {
+    const totalPages = Math.ceil(jsonData.length / itemsPerPage);
     const paginationControls = document.getElementById('pagination-controls');
-    paginationControls.innerHTML = '';
+    paginationControls.innerHTML = ''; // Clear previous controls
 
-    const pageCount = Math.ceil(data.length / itemsPerPage);
-    
-    for (let i = 1; i <= pageCount; i++) {
+    for (let i = 1; i <= totalPages; i++) {
         const button = document.createElement('button');
         button.textContent = i;
-        button.className = i === currentPage ? 'active' : '';
-        button.addEventListener('click', () => {
+        button.classList.add('pagination-button');
+        if (i === currentPage) {
+            button.classList.add('active');
+        }
+        button.addEventListener('click', function() {
             currentPage = i;
-            renderContent();
-            renderPagination();
+            renderData();
+            renderPaginationControls();
         });
         paginationControls.appendChild(button);
     }
 }
 
-function initializePagination() {
-    renderContent();
-    renderPagination();
-}
-
-initializePagination();
+// Initialize pagination
+fetchJsonData();
