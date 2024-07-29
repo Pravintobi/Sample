@@ -1,0 +1,35 @@
+.first-section{
+  margin-left: 19%;
+  margin-top: 7%;
+}
+h3{
+  color: aquamarine;
+  text-align: center;
+  margin-top: 20px;
+}
+.card-body{
+  background-color: aquamarine;
+}
+.completed-item {
+  color: green;
+}
+
+.in-progress-item {
+  color: #ff007f; /* Rose-like color */
+}
+
+/* Additional classes to style the dropdown toggle based on status */
+.bg-success {
+  background-color: green !important;
+}
+
+.bg-danger {
+  background-color: #ff007f !important; /* Rose-like color */
+}
+
+.text-white {
+  color: white !important;
+}
+.butt-ons{
+  margin-left: 148px !important;
+}
