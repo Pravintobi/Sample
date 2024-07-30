@@ -26,16 +26,18 @@ const App = () => {
   const updateTodoStatus = (id, status) => {
     setTodos(todos.map(todo => todo.id === id ? { ...todo, status } : todo));
 };
+
+const [statusFilter, setStatusFilter] = useState('');
   return (
     <Container>
       <Row>
         <Col>
           
-          <Todoform addTodo={addTodo} editTodo={editTodo} currentTodo={currentTodo} />
+          <Todoform addTodo={addTodo} editTodo={editTodo} currentTodo={currentTodo} statusFilter={statusFilter} setStatusFilter={setStatusFilter} />
         </Col>
       </Row>
     
-          <TodoList todos={todos} deleteTodo={deleteTodo} setCurrentTodo={setCurrentTodo} updateTodoStatus={updateTodoStatus}S/>
+          <TodoList todos={todos} deleteTodo={deleteTodo} setCurrentTodo={setCurrentTodo} updateTodoStatus={updateTodoStatus} statusFilter={statusFilter}/>
        
     </Container>
   );

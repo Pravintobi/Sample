@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, Col, Row ,DropdownButton} from 'react-bootstrap';
-function Todoform({ addTodo, editTodo, currentTodo }) {
+import { Form, Button, Col, Row, DropdownButton, Dropdown } from 'react-bootstrap';
+function Todoform({ todos, addTodo, editTodo, currentTodo, statusFilter, setStatusFilter }) {
   const [todo, setTodo] = useState([]);
   const [error, setError] = useState('');
+
   useEffect(() => {
     if (currentTodo) {
       setTodo(currentTodo);
@@ -18,7 +19,16 @@ function Todoform({ addTodo, editTodo, currentTodo }) {
       [name]: value,
     });
   };
+  const handleStatusChange = (status) => {
+    setTodo({
+      ...todo,
+      status: status,
+    });
+  };
 
+  const handleStatusFilterChange = (filter) => {
+    setStatusFilter(filter);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!todo.name || !todo.description) {
@@ -34,6 +44,8 @@ function Todoform({ addTodo, editTodo, currentTodo }) {
 
 
   };
+
+
   return (
     <>
       <h3>My ToDo</h3>
@@ -71,6 +83,18 @@ function Todoform({ addTodo, editTodo, currentTodo }) {
               <Button variant="success" type="submit" className="w-100">
                 Add To do
               </Button>
+            </Col>
+
+
+
+            <Col sm={3}>
+              <Form.Group className="form-floating">
+                <Form.Label id='form-label'>Status Filter:</Form.Label>
+                <DropdownButton id="dropdown-basic-button" title="All" onSelect={handleStatusFilterChange}>
+                  <Dropdown.Item eventKey="Completed">Completed</Dropdown.Item>
+                  <Dropdown.Item eventKey="On Progress">On Progress</Dropdown.Item>
+                </DropdownButton>
+              </Form.Group>
             </Col>
 
 

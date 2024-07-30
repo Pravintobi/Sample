@@ -33,3 +33,14 @@ h3{
 .butt-ons{
   margin-left: 148px !important;
 }
+#dropdown-basic-button
+{
+  background-color: #ff007f !important;
+  border: none !important;
+  margin-left: 108px;
+}
+#form-label{
+  font-weight: bolder;
+  margin-top: -10px;
+  margin-left: -10px;
+}

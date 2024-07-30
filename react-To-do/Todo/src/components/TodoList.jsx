@@ -2,19 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import { ListGroup, Button, Col, Row, Dropdown,DropdownButton} from 'react-bootstrap';
 
-const TodoList = ({ todos, deleteTodo, setCurrentTodo, updateTodoStatus }) => {
-    const [status, setStatus] = useState(todos.status);
-    const [statusFilter, setStatusFilter] = useState('');
-
-    const handleStatusFilterChange = (filter) => {
-        setStatusFilter(filter);
-    };
+const TodoList = ({ todos, deleteTodo, setCurrentTodo, updateTodoStatus ,statusFilter }) => {
+   
+   
 
     
 
-    const handleStatusChange = (progress) => {
-        setTodos(todos.map(todo => todo.id === id ? { ...todo, status } : todo));
-    }
+
     const getStatusClass = (status) => {
         switch (status) {
             case 'Completed':
@@ -24,20 +18,12 @@ const TodoList = ({ todos, deleteTodo, setCurrentTodo, updateTodoStatus }) => {
             default:
                 return '';
         }
-    };
+    }; 
     const filteredTodos = statusFilter ? todos.filter(todo => todo.status === statusFilter) : todos;
 
     return (
         <div className=''>
-            <Row className="mb-3">
-                <Col xs="auto">
-                    <DropdownButton id="dropdown-basic-button" variant="success" title="Filter by Status" onSelect={handleStatusFilterChange}>
-                        <Dropdown.Item eventKey="">All</Dropdown.Item>
-                        <Dropdown.Item eventKey="Completed">Completed</Dropdown.Item>
-                        <Dropdown.Item eventKey="On Progress">On Progress</Dropdown.Item>
-                    </DropdownButton>
-                </Col>
-            </Row>
+        
             <Row className="mb-3">
                 {filteredTodos.map((todo) => (
 
@@ -72,7 +58,7 @@ const TodoList = ({ todos, deleteTodo, setCurrentTodo, updateTodoStatus }) => {
                                     <Col xs="auto">
                                         <Dropdown>
                                             <Dropdown.Toggle variant="secondary" id="dropdown-basic" className={getStatusClass(todo.status)}>
-                                                {todo.status || "Status"}
+                                                {todo.status || "Not-Completed"}
                                             </Dropdown.Toggle>
 
                                             <Dropdown.Menu>
