@@ -89,8 +89,9 @@ function Todoform({ todos, addTodo, editTodo, currentTodo, statusFilter, setStat
 
             <Col sm={3}>
               <Form.Group className="form-floating">
-                <Form.Label id='form-label'>Status Filter:</Form.Label>
+                <Form.Label id='form-label'>Status Filter</Form.Label>
                 <DropdownButton id="dropdown-basic-button" title="All" onSelect={handleStatusFilterChange}>
+                <Dropdown.Item eventKey="All">All</Dropdown.Item>
                   <Dropdown.Item eventKey="Completed">Completed</Dropdown.Item>
                   <Dropdown.Item eventKey="On Progress">On Progress</Dropdown.Item>
                 </DropdownButton>
