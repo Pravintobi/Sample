@@ -1,0 +1,118 @@
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f1f3f6;
+}
+
+.cart-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.cart-title {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #2874f0; /* Flipkart Blue */
+  text-align: center;
+}
+
+.cart-summary {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  width: 120px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+.product-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.product-price {
+  color: #2874f0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.qty-btn {
+  background-color: #2874f0;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.qty-btn:hover {
+  background-color: #0056b3;
+}
+
+.product-quantity {
+  margin: 0 10px;
+  font-size: 16px;
+}
+
+.product-total {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .cart-container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-details {
+    margin-left: 0;
+    text-align: center;
+  }
+}
